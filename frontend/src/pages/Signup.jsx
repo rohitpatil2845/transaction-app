@@ -6,6 +6,7 @@ import { InputBox } from "../components/InputBox";
 import { SubHeading } from "../components/SubHeading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config";
 
 export const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -17,18 +18,17 @@ export const Signup = () => {
   useEffect(() => {
     const userToken = localStorage.getItem("token");
 
-    // Check if token exists in local storage
     if (userToken) {
-      navigate("/dashboard"); // Redirect to sign-in page if token doesn't exist
+      navigate("/dashboard");
     }
-  }, []);
+  }, [navigate]);
 
   return (
-    <div className="bg-slate-300 h-screen flex justify-center">
+    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 h-screen flex justify-center">
       <div className="flex flex-col justify-center">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+        <div className="rounded-2xl bg-white w-80 text-center p-6 px-8 shadow-2xl">
           <Heading label={"Sign up"} />
-          <SubHeading label={"Enter your infromation to create an account"} />
+          <SubHeading label={"Enter your information to create an account"} />
           <InputBox
             onChange={(e) => {
               setFirstName(e.target.value);
@@ -60,7 +60,7 @@ export const Signup = () => {
           <div className="pt-4">
             <Button
               onClick={async () => {
-                const response = await axios.post("http://localhost:3000/api/v1/user/signup",
+                const response = await axios.post(`${API_URL}/api/v1/user/signup`,
                   {
                     username,
                     firstName,

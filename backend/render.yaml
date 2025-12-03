@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: paywallet-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 3000
+      - key: DAILY_LIMIT
+        value: 50000
+      - key: MIN_TRANSFER
+        value: 1
+      - key: MAX_TRANSFER
+        value: 100000
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        sync: false
